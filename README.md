@@ -21,10 +21,7 @@ The system generates realistic end-of-line flash test data (with both common-cau
 ## Dashboard Screenshots
 
 ### Process Capability Report (Matplotlib)
-![Process Capability & SPC Report](assets/tpv_capability_report.png)
-
-### Interactive SPC Dashboard
-![Interactive Dashboard](assets/pv_capability_dashboard.png)
+![Process Capability & SPC Report](assets/pv_capability_report.png)
 
 ---
 
