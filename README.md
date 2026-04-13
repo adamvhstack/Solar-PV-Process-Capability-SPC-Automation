@@ -10,11 +10,11 @@ Built by **Adam Van Hove** · Oregon State University · Mechanical Engineering 
 
 ## What This Project Does
 
-In high-volume PV manufacturing, the difference between a profitable line and a scrap-heavy one comes down to how quickly you detect process drift. Manual SPC — pulling samples, hand-calculating X-bar/R values, taping control charts to a whiteboard — doesn't scale when you're testing 10,000+ modules across 10 parameters.
+In high-volume PV manufacturing, the difference between a profitable line and a scrap-heavy one comes down to how quickly you detect process drift. Manual SPC, pulling samples, hand-calculating X-bar/R values, taping control charts to a whiteboard, doesn't scale when you're testing 10,000+ modules across 10 parameters.
 
 This project automates that entire workflow and answers the question every manufacturing engineer asks: **"Is my process capable, and where exactly is it drifting?"**
 
-The system generates realistic end-of-line flash test data (with both common-cause noise and directional special-cause bursts), computes Cp/Cpk and Pp/Ppk for every critical parameter, renders X-bar control charts with out-of-control flagging, and presents everything through an interactive dashboard — the same deliverable that would appear on a quality engineering team's monitor on a real production floor.
+The system generates realistic end-of-line flash test data (with both common-cause noise and directional special-cause bursts), computes Cp/Cpk and Pp/Ppk for every critical parameter, renders X-bar control charts with out-of-control flagging, and presents everything through an interactive dashboard, the same deliverable that would appear on a quality engineering team's monitor on a real production floor.
 
 ---
 
