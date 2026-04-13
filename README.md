@@ -88,7 +88,7 @@ No build tools or server required, just open the `.html` file in any browser.
 | Series R (Ω) | 1.08 | ⚠️ Marginal |
 | Shunt R (Ω) | 0.82 | ❌ Incapable |
 
-Only Pmax exceeds the 1.33 industry benchmark. Shunt resistance is the highest-risk parameter (Cpk < 1.0), indicating the tolerance band is too narrow for the current process spread — a candidate for either tightening process controls or widening the spec.
+Only Pmax exceeds the 1.33 industry benchmark. Shunt resistance is the highest-risk parameter (Cpk < 1.0), indicating the tolerance band is too narrow for the current process spread, a candidate for either tightening process controls or widening the spec.
 
 ---
 
