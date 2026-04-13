@@ -69,7 +69,7 @@ A self-contained HTML/JS dashboard (Chart.js) that lets you:
 - Scroll through the X-bar control chart with highlighted OOC points
 - Compare all parameters in a single overview bar chart
 
-No build tools or server required — just open the `.html` file in any modern browser.
+No build tools or server required, just open the `.html` file in any browser.
 
 ---
 
@@ -106,7 +106,7 @@ The updated version computes and displays both, giving a complete picture.
 
 **Why directional burst noise?**
 
-Real manufacturing special causes are rarely symmetric. A contaminated paste batch doesn't randomly increase *and* decrease fill factor — it degrades it. Modeling directional bursts produces data that better mimics real failure modes and makes for a more defensible simulation in technical discussions.
+Real manufacturing special causes are rarely symmetric. A contaminated paste batch doesn't randomly increase *and* decrease fill factor, it degrades it. Modeling directional bursts produces data that better mimics real failure modes and makes for a more defensible simulation in technical discussions.
 
 **Why R̄ / d₂ instead of pooled standard deviation?**
 
@@ -170,7 +170,7 @@ start pv_capability_dashboard.html       # Windows
 ```
 
 ### Interactive Dashboard
-Open `pv_capability_dashboard.html` in any modern browser — no server, no Python environment required.
+Open `pv_capability_dashboard.html` in any modern browser, no server, no Python environment required.
 
 ---
 
@@ -184,7 +184,7 @@ Open `pv_capability_dashboard.html` in any modern browser — no server, no Pyth
 
 ## Related Projects
 
-- [Supply Chain Digital Twin & AI Disruption Analyzer](https://github.com/adamvhstack/Adam-Van-Hove---Supply-Chain-Digital-Twin) — A discrete-event simulation modeling a 3-tier supply network with Monte Carlo stress testing, Claude API-powered root cause analysis, and executive dashboards.
+- [Supply Chain Digital Twin & AI Disruption Analyzer](https://github.com/adamvhstack/Adam-Van-Hove---Supply-Chain-Digital-Twin), A discrete-event simulation modeling a 3-tier supply network with Monte Carlo stress testing, Claude API-powered root cause analysis, and executive dashboards.
 
 ---
 
