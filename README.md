@@ -157,7 +157,7 @@ start pv_capability_dashboard.html       # Windows
 
 Only Pmax exceeds the 1.33 industry benchmark. Shunt resistance is the highest-risk parameter (Cpk < 1.0), indicating the tolerance band is too narrow for the current process spread — a candidate for either tightening process controls or widening the spec.
 
-[**→ Launch Interactive Dashboard**](https://adamvhstack.github.io/Solar-PV-SPC-Automation/pv_capability_dashboard.html)
+[**→ Launch Interactive Dashboard**](https://adamvhstack.github.io/Solar-PV-Process-Capability-SPC-Automation/pv_capability_dashboard.html)
 
 ---
 
