@@ -23,7 +23,7 @@ DEPENDENCIES:
 
 KEY CONCEPTS (read before the code):
 
-    Cp vs Pp — TWO flavours of capability
+    Cp vs Pp — TWO capabilies
     -------------------------------------------
     Both measure "does the process fit inside the spec window?", but they
     estimate process spread (sigma) differently:
@@ -40,8 +40,8 @@ KEY CONCEPTS (read before the code):
         operator differences, etc.).
         Think of it as "what the process IS ACTUALLY doing over the full run."
 
-    If Cp ≈ Pp  → the process is stable; no significant between-group shifts.
-    If Cp > Pp  → special-cause variation is inflating overall spread.
+    If Cp ≈ Pp  - the process is stable; no significant between-group shifts.
+    If Cp > Pp  - special-cause variation is inflating overall spread.
                   The X-bar chart will usually show out-of-control signals.
 
     Cpk and Ppk apply the same logic but penalise an off-centre mean:
@@ -104,9 +104,6 @@ A2_TABLE = {2: 1.880, 3: 1.023, 4: 0.729, 5: 0.577,
             6: 0.483, 7: 0.419, 8: 0.373, 9: 0.337, 10: 0.308}
 
 
-# ==============================================================================
-# HELPER: compute subgroup statistics (shared by capability and X-bar chart)
-# ==============================================================================
 def subgroup_stats(series, subgroup_size):
     """
     Split an ordered series into consecutive subgroups and compute per-subgroup
