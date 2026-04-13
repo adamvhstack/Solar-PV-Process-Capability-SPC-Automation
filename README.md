@@ -8,11 +8,11 @@ An automated Statistical Process Control (SPC) toolkit that monitors critical-to
 
 ## Motivation
 
-In high-volume PV manufacturing, the difference between a profitable line and a scrap-heavy one often comes down to how quickly you can detect process drift. Manual SPC — pulling samples, hand-calculating X-bar/R values, taping control charts to a whiteboard — doesn't scale when you're testing 10,000+ modules across 10 parameters.
+In high-volume PV manufacturing, the difference between a profitable line and a scrap-heavy one often comes down to how quickly you can detect process drift. Manual SPC, pulling samples, hand-calculating X-bar/R values, taping control charts to a whiteboard, doesn't scale when you're testing 10,000+ modules across 10 parameters.
 
-This project automates that entire workflow: data ingestion, capability analysis, control charting, and visualization. The goal is to demonstrate how Python-based SPC tooling can replace manual tracking with a system that flags out-of-control conditions the moment they appear — the kind of infrastructure a manufacturing or continuous improvement engineering team would deploy on a real production floor.
+This project automates that entire workflow: data ingestion, capability analysis, control charting, and visualization. The goal is to demonstrate how Python-based SPC tooling can replace manual tracking with a system that flags out-of-control conditions the moment they appear, the kind of infrastructure a manufacturing or continuous improvement engineering team would deploy on a real production floor.
 
-The project also reflects a core principle from Lean Six Sigma: **you can't improve what you can't measure**. By computing both Cp/Cpk (within-subgroup, short-term capability) and Pp/Ppk (overall, long-term performance), the tool distinguishes between what a process *can* do under stable conditions and what it *is actually doing* over an extended run — a distinction that drives very different corrective actions.
+The project also reflects a core principle from Lean Six Sigma: **you can't improve what you can't measure**. By computing both Cp/Cpk (within-subgroup, short-term capability) and Pp/Ppk (overall, long-term performance), the tool distinguishes between what a process *can* do under stable conditions and what it *is actually doing* over an extended run, a distinction that drives very different corrective actions.
 
 ---
 
@@ -68,7 +68,7 @@ No build tools or server required — just open the `.html` file in any modern b
 
 **Why Cp/Cpk instead of Pp/Ppk for the primary metric?**
 
-The original version of this project computed capability using `series.std(ddof=1)` — the overall sample standard deviation. This is technically Pp/Ppk (long-term performance), not Cp/Cpk (short-term capability). The distinction matters because:
+The original version of this project computed capability using `series.std(ddof=1)`, the overall sample standard deviation. This is technically Pp/Ppk (long-term performance), not Cp/Cpk (short-term capability). The distinction matters because:
 
 - Cp/Cpk uses σ estimated from *within-subgroup* variation (R̄/d₂), isolating only common-cause spread.
 - Pp/Ppk uses the *overall* σ, which includes between-subgroup shifts (batch changes, tool wear, operator differences).
@@ -78,7 +78,7 @@ The updated version computes and displays both, giving a complete picture.
 
 **Why directional burst noise?**
 
-Real manufacturing special causes are rarely symmetric. A contaminated paste batch doesn't randomly increase *and* decrease fill factor — it degrades it. Modeling directional bursts produces data that better mimics real failure modes and makes for a more defensible simulation in technical discussions.
+Real manufacturing special causes are rarely symmetric. A contaminated paste batch doesn't randomly increase *and* decrease fill factor, it degrades it. Modeling directional bursts produces data that better mimics real failure modes and makes for a more defensible simulation in technical discussions.
 
 **Why R̄ / d₂ instead of pooled standard deviation?**
 
@@ -157,7 +157,7 @@ start pv_capability_dashboard.html       # Windows
 | Series R (Ω) | 1.08 | ⚠️ Marginal |
 | Shunt R (Ω) | 0.82 | ❌ Incapable |
 
-Only Pmax exceeds the 1.33 industry benchmark. Shunt resistance is the highest-risk parameter (Cpk < 1.0), indicating the tolerance band is too narrow for the current process spread — a candidate for either tightening process controls or widening the spec.
+Only Pmax exceeds the 1.33 industry benchmark. Shunt resistance is the highest-risk parameter (Cpk < 1.0), indicating the tolerance band is too narrow for the current process spread, a candidate for either tightening process controls or widening the spec.
 
 [**→ Launch Interactive Dashboard**](https://adamvhstack.github.io/Solar-PV-Process-Capability-SPC-Automation/pv_capability_dashboard.html)
 
@@ -195,4 +195,4 @@ This project applies several core Statistical Process Control and Lean Six Sigma
 B.S. Mechanical Engineering — Oregon State University (2027)
 Focused on Lean Manufacturing, NPI, and the intersection of engineering and operations strategy.
 
-[Resume](Adam_Van_Hove_Resume_4_0.pdf) · adamvh822@gmail.com · 669-500-6559
+adamvh822@gmail.com
