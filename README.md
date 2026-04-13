@@ -200,8 +200,6 @@ This project is open source for educational and portfolio purposes.
 B.S. Mechanical Engineering — Oregon State University (2027)
 Focused on Lean Manufacturing, NPI, and the intersection of engineering and operations strategy.
 
-adamvh822@gmail.com
-
 ---
 
 *Built as a portfolio project targeting Manufacturing Engineering, Quality Engineering, and TPM internship roles. Every component — from the noise model to the dashboard — is designed to be explainable in a 60-second interview answer.*
