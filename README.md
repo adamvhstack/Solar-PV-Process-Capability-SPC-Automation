@@ -1,22 +1,34 @@
 # Solar PV Module Manufacturing — Process Capability & SPC Automation
 
-An automated Statistical Process Control (SPC) toolkit that monitors critical-to-quality (CTQ) parameters for crystalline-silicon photovoltaic module production. Built in Python, the project generates realistic manufacturing data, computes both short-term capability (Cp/Cpk) and long-term performance (Pp/Ppk) indices, renders X-bar control charts, and serves everything through an interactive browser-based dashboard.
+**An automated Statistical Process Control (SPC) toolkit that monitors critical-to-quality parameters for crystalline-silicon photovoltaic module production, computes short-term capability (Cp/Cpk) and long-term performance (Pp/Ppk) indices, renders X-bar control charts, and serves everything through an interactive browser-based dashboard.**
+
+Built by **Adam Van Hove** · Oregon State University · Mechanical Engineering (B.S. 2027)
 
 [**→ Launch Interactive Dashboard**](https://adamvhstack.github.io/Solar-PV-Process-Capability-SPC-Automation/pv_capability_dashboard.html)
 
 ---
 
-## Motivation
+## What This Project Does
 
-In high-volume PV manufacturing, the difference between a profitable line and a scrap-heavy one often comes down to how quickly you can detect process drift. Manual SPC, pulling samples, hand-calculating X-bar/R values, taping control charts to a whiteboard, doesn't scale when you're testing 10,000+ modules across 10 parameters.
+In high-volume PV manufacturing, the difference between a profitable line and a scrap-heavy one comes down to how quickly you detect process drift. Manual SPC — pulling samples, hand-calculating X-bar/R values, taping control charts to a whiteboard — doesn't scale when you're testing 10,000+ modules across 10 parameters.
 
-This project automates that entire workflow: data ingestion, capability analysis, control charting, and visualization. The goal is to demonstrate how Python-based SPC tooling can replace manual tracking with a system that flags out-of-control conditions the moment they appear, the kind of infrastructure a manufacturing or continuous improvement engineering team would deploy on a real production floor.
+This project automates that entire workflow and answers the question every manufacturing engineer asks: **"Is my process capable, and where exactly is it drifting?"**
 
-The project also reflects a core principle from Lean Six Sigma: **you can't improve what you can't measure**. By computing both Cp/Cpk (within-subgroup, short-term capability) and Pp/Ppk (overall, long-term performance), the tool distinguishes between what a process *can* do under stable conditions and what it *is actually doing* over an extended run, a distinction that drives very different corrective actions.
+The system generates realistic end-of-line flash test data (with both common-cause noise and directional special-cause bursts), computes Cp/Cpk and Pp/Ppk for every critical parameter, renders X-bar control charts with out-of-control flagging, and presents everything through an interactive dashboard — the same deliverable that would appear on a quality engineering team's monitor on a real production floor.
 
 ---
 
-## What the Project Does
+## Dashboard Screenshots
+
+### Process Capability Report (Matplotlib)
+![Process Capability & SPC Report](assets/tpv_capability_report.png)
+
+### Interactive SPC Dashboard
+![Interactive Dashboard](assets/pv_capability_dashboard.png)
+
+---
+
+## How It Works
 
 ### 1. Data Generation (`generate_pv_data.py`)
 
@@ -64,6 +76,25 @@ No build tools or server required — just open the `.html` file in any modern b
 
 ---
 
+## Results Summary
+
+| Parameter | Cpk | Status |
+|-----------|-----|--------|
+| Pmax (W) | 1.61 | ✅ Capable |
+| Voc (V) | 1.10 | ⚠️ Marginal |
+| Isc (A) | 1.29 | ⚠️ Marginal |
+| Vmp (V) | 1.22 | ⚠️ Marginal |
+| Imp (A) | 1.24 | ⚠️ Marginal |
+| Fill Factor (%) | 1.01 | ⚠️ Marginal |
+| Efficiency (%) | 1.29 | ⚠️ Marginal |
+| Temp Coeff Pmax | 1.32 | ⚠️ Marginal |
+| Series R (Ω) | 1.08 | ⚠️ Marginal |
+| Shunt R (Ω) | 0.82 | ❌ Incapable |
+
+Only Pmax exceeds the 1.33 industry benchmark. Shunt resistance is the highest-risk parameter (Cpk < 1.0), indicating the tolerance band is too narrow for the current process spread — a candidate for either tightening process controls or widening the spec.
+
+---
+
 ## Key Technical Decisions
 
 **Why Cp/Cpk instead of Pp/Ppk for the primary metric?**
@@ -78,11 +109,39 @@ The updated version computes and displays both, giving a complete picture.
 
 **Why directional burst noise?**
 
-Real manufacturing special causes are rarely symmetric. A contaminated paste batch doesn't randomly increase *and* decrease fill factor, it degrades it. Modeling directional bursts produces data that better mimics real failure modes and makes for a more defensible simulation in technical discussions.
+Real manufacturing special causes are rarely symmetric. A contaminated paste batch doesn't randomly increase *and* decrease fill factor — it degrades it. Modeling directional bursts produces data that better mimics real failure modes and makes for a more defensible simulation in technical discussions.
 
 **Why R̄ / d₂ instead of pooled standard deviation?**
 
 The R-bar method is the classical SPC approach, historically preferred because range is easy to compute by hand on the shop floor and robust to single outliers within small subgroups. For n=5, d₂=2.326 and A₂=0.577 (from standard SPC/ISO tables). The S-bar/c₄ method is equally valid and gives similar results for small subgroup sizes.
+
+---
+
+## Technical Skills Demonstrated
+
+| Skill | Where It Appears |
+|-------|-----------------|
+| **Statistical Process Control (SPC)** | X-bar/R charts, UCL/LCL derivation, OOC flagging |
+| **Process Capability Analysis** | Cp/Cpk (within-subgroup) and Pp/Ppk (overall) computation |
+| **Lean Six Sigma Concepts** | DMAIC-aligned analysis, rational subgrouping, spec limit evaluation |
+| **Monte Carlo / Stochastic Modeling** | Gaussian noise + directional special-cause burst injection |
+| **Python (NumPy, Pandas, Matplotlib)** | Data generation, statistical computation, publication-quality charting |
+| **Data Visualization** | Multi-panel matplotlib report + interactive Chart.js dashboard |
+| **ISO 8258 / ASTM SPC Standards** | d₂, A₂ constants, R̄-based sigma estimation |
+| **Manufacturing Domain Knowledge** | Mono-PERC PV module parameters, STC test conditions, realistic failure modes |
+| **Interactive UI Design** | Self-contained HTML/CSS/JS dashboard, no backend required |
+
+---
+
+## Concepts & Methodology
+
+This project applies several core Statistical Process Control and Lean Six Sigma concepts:
+
+- **Cp / Cpk (Process Capability)**: Measures whether the short-term process spread fits within engineering spec limits. Uses within-subgroup σ estimated via R̄/d₂.
+- **Pp / Ppk (Process Performance)**: Same metric but using overall σ, capturing long-term variation including between-subgroup shifts.
+- **X-bar / R Charts**: Classical SPC control charts that plot subgroup means over time. Points beyond UCL/LCL signal special-cause variation.
+- **Rational Subgrouping**: Consecutive modules (n=5) are grouped so that within-group variation represents only common-cause noise.
+- **A₂ and d₂ Constants**: Tabled values from ISO 8258 / ASTM SPC standards that convert subgroup range statistics into σ estimates and control limits.
 
 ---
 
@@ -99,79 +158,35 @@ The R-bar method is the classical SPC approach, historically preferred because r
 
 ---
 
-## Getting Started
+## How to Run
 
 ### Prerequisites
-
 - Python 3.8+
-- `numpy`, `pandas`, `matplotlib`
+- Required packages: `numpy`, `pandas`, `matplotlib`
 
+### Quick Start
 ```bash
+# Clone the repository
+git clone https://github.com/adamvhstack/Solar-PV-Process-Capability-SPC-Automation.git
+cd Solar-PV-Process-Capability-SPC-Automation
+
+# Install dependencies
 pip install numpy pandas matplotlib
-```
 
-### Run the Pipeline
-
-```bash
 # Step 1: Generate the synthetic dataset
 python generate_pv_data.py
 
 # Step 2: Run the capability analysis and generate the static report
 python analyze_pv_capability.py
 
-# Step 3: Open the interactive dashboard
-# (just open the file in your browser — no server needed)
+# Step 3: Open the interactive dashboard (no server needed)
 open pv_capability_dashboard.html        # macOS
 xdg-open pv_capability_dashboard.html    # Linux
 start pv_capability_dashboard.html       # Windows
 ```
 
-### Console Output (Step 2)
-
-```
-=== Process Capability & Performance Summary ===
-    Cp / Cpk  = within-subgroup (short-term) capability
-    Pp / Ppk  = overall (long-term) performance
-
-      Parameter     Mean  Sigma_Within  Sigma_Overall   ...   Cp    Cpk     Pp    Ppk
-         Pmax_W 399.9219        4.1318         4.1057   ... 1.6135 1.6072 1.6238 1.6174
-          Voc_V  49.4998        0.3037         0.3037   ... 1.0976 1.0974 1.0975 1.0973
-          ...
-     Shunt_R_ohm 349.9730      20.4145        20.4632   ... 0.8164 0.8160 0.8145 0.8140
-```
-
----
-
-## Results Summary
-
-| Parameter | Cpk | Status |
-|-----------|-----|--------|
-| Pmax (W) | 1.61 | ✅ Capable |
-| Voc (V) | 1.10 | ⚠️ Marginal |
-| Isc (A) | 1.29 | ⚠️ Marginal |
-| Vmp (V) | 1.22 | ⚠️ Marginal |
-| Imp (A) | 1.24 | ⚠️ Marginal |
-| Fill Factor (%) | 1.01 | ⚠️ Marginal |
-| Efficiency (%) | 1.29 | ⚠️ Marginal |
-| Temp Coeff Pmax | 1.32 | ⚠️ Marginal |
-| Series R (Ω) | 1.08 | ⚠️ Marginal |
-| Shunt R (Ω) | 0.82 | ❌ Incapable |
-
-Only Pmax exceeds the 1.33 industry benchmark. Shunt resistance is the highest-risk parameter (Cpk < 1.0), indicating the tolerance band is too narrow for the current process spread, a candidate for either tightening process controls or widening the spec.
-
-[**→ Launch Interactive Dashboard**](https://adamvhstack.github.io/Solar-PV-Process-Capability-SPC-Automation/pv_capability_dashboard.html)
-
----
-
-## Concepts & Methodology
-
-This project applies several core Statistical Process Control and Lean Six Sigma concepts:
-
-- **Cp / Cpk (Process Capability)**: Measures whether the short-term process spread fits within engineering spec limits. Uses within-subgroup σ estimated via R̄/d₂.
-- **Pp / Ppk (Process Performance)**: Same metric but using overall σ, capturing long-term variation including between-subgroup shifts.
-- **X-bar / R Charts**: Classical SPC control charts that plot subgroup means over time. Points beyond UCL/LCL signal special-cause variation.
-- **Rational Subgrouping**: Consecutive modules (n=5) are grouped so that within-group variation represents only common-cause noise.
-- **A₂ and d₂ Constants**: Tabled values from ISO 8258 / ASTM SPC standards that convert subgroup range statistics into σ estimates and control limits.
+### Interactive Dashboard
+Open `pv_capability_dashboard.html` in any modern browser — no server, no Python environment required.
 
 ---
 
@@ -185,7 +200,13 @@ This project applies several core Statistical Process Control and Lean Six Sigma
 
 ## Related Projects
 
-- [Supply Chain Digital Twin & AI Disruption Analyzer](https://github.com/adamvhstack/Adam-Van-Hove---Supply-Chain-Digital-Twin) — A discrete-event simulation modeling a 3-tier supply network with Claude API-powered root cause analysis and executive dashboards.
+- [Supply Chain Digital Twin & AI Disruption Analyzer](https://github.com/adamvhstack/Adam-Van-Hove---Supply-Chain-Digital-Twin) — A discrete-event simulation modeling a 3-tier supply network with Monte Carlo stress testing, Claude API-powered root cause analysis, and executive dashboards.
+
+---
+
+## License
+
+This project is open source for educational and portfolio purposes.
 
 ---
 
@@ -196,3 +217,7 @@ B.S. Mechanical Engineering — Oregon State University (2027)
 Focused on Lean Manufacturing, NPI, and the intersection of engineering and operations strategy.
 
 adamvh822@gmail.com
+
+---
+
+*Built as a portfolio project targeting Manufacturing Engineering, Quality Engineering, and TPM internship roles. Every component — from the noise model to the dashboard — is designed to be explainable in a 60-second interview answer.*
