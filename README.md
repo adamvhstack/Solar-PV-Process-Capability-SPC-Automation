@@ -142,19 +142,6 @@ This project applies several core Statistical Process Control and Lean Six Sigma
 
 ---
 
-## Repository Structure
-
-```
-├── generate_pv_data.py            # Script 1: Synthetic data generation
-├── analyze_pv_capability.py       # Script 2: Cp/Cpk, Pp/Ppk, X-bar charts
-├── pv_capability_dashboard.html   # Interactive browser dashboard
-├── pv_test_results.csv            # Generated dataset (10,000 records)
-├── pv_capability_report.png       # Static matplotlib report
-└── README.md
-```
-
----
-
 ## How to Run
 
 ### Prerequisites
