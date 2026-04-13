@@ -2,6 +2,8 @@
 
 An automated Statistical Process Control (SPC) toolkit that monitors critical-to-quality (CTQ) parameters for crystalline-silicon photovoltaic module production. Built in Python, the project generates realistic manufacturing data, computes both short-term capability (Cp/Cpk) and long-term performance (Pp/Ppk) indices, renders X-bar control charts, and serves everything through an interactive browser-based dashboard.
 
+[**→ Launch Interactive Dashboard**](https://adamvhstack.github.io/Solar-PV-Process-Capability-SPC-Automation/pv_capability_dashboard.html)
+
 ---
 
 ## Motivation
