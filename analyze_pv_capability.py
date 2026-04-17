@@ -21,7 +21,7 @@ DEPENDENCIES:
     pandas     — CSV loading and data manipulation
     matplotlib — plotting engine
 
-KEY CONCEPTS (read before the code):
+KEY CONCEPTS:
 
     Cp vs Pp — TWO capabilies
     -------------------------------------------
